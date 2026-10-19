@@ -1,0 +1,239 @@
+ClearCollect(
+    colChatInput,
+    {
+        chatInputRecordId: 1,
+        MessageBody: "Sample Message One. Detailed description for record 1." & Char(10), 
+        Category: "General Inquiry",
+        Details: "Comment text - Type A1" & Char(10) & "- Subtype XA", 
+        Active: true
+    },
+    {
+        chatInputRecordId: 2,
+        MessageBody: "Second important message. Focus on feature request documentation." & Char(10),
+        Category: "Feature Request",
+        Details: "Comment text - Type B1" & Char(10) & "- Subtype XB",
+        Active: true
+    },
+    {
+        chatInputRecordId: 3,
+        MessageBody: "# Input sample 3 " & Char(10) & "Detail description regarding system performance.",
+        Category: "Performance Test",
+        Details: "Comment text - Type C1" & Char(10) & "- Subtype XC",
+        Active: true
+    },
+    {
+        chatInputRecordId: 4,
+        MessageBody: "Fourth entry. Testing the data structure consistency across categories." & Char(10),
+        Category: "Technical Query",
+        Details: "Comment text - Type D1" & Char(10) & "- Subtype XD",
+        Active: true
+    },
+    {
+        chatInputRecordId: 5,
+        MessageBody: "# Input sample 5 " & Char(10) & "Detail description of a bug found in production.",
+        Category: "Bug Report",
+        Details: "Comment text - Type E1" & Char(10) & "- Subtype XE (Critical)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 6,
+        MessageBody: "Sixth message. Feedback on the current user interface and navigation flow." & Char(10),
+        Category: "UI/UX Feedback",
+        Details: "Comment text - Type F1" & Char(10) & "- Subtype XF (High Priority)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 7,
+        MessageBody: "# Input sample 7 " & Char(10) & "Detailed analysis of quarterly sales data.",
+        Category: "Sales Analysis",
+        Details: "Comment text - Type G1" & Char(10) & "- Subtype XG (APAC)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 8,
+        MessageBody: "Eighth message. Requesting clarification on the API integration endpoints." & Char(10),
+        Category: "Technical Query",
+        Details: "Comment text - Type H1" & Char(10) & "- Subtype XH (API)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 9,
+        MessageBody: "# Input sample 9 " & Char(10) & "Testing load capabilities with a high volume of data.",
+        Category: "System Test",
+        Details: "Comment text - Type I1" & Char(10) & "- Subtype XI (Load)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 10,
+        MessageBody: "Tenth entry. Suggestion to implement dark mode functionality for user comfort." & Char(10),
+        Category: "Suggestion",
+        Details: "Comment text - Type J1" & Char(10) & "- Subtype XJ (Enhancement)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 11,
+        MessageBody: "# Input sample 11 " & Char(10) & "Comprehensive review of security protocols and compliance.",
+        Category: "Security Audit",
+        Details: "Comment text - Type K1" & Char(10) & "- Subtype XK (ISO)",
+        Active: true
+    },
+    {
+        chatInputRecordId: 12,
+        MessageBody: "Final record. Confirmation required before the next deployment phase." & Char(10),
+        Category: "Project Management",
+        Details: "Comment text - Type L1" & Char(10) & "- Subtype XL (Deadline)",
+        Active: true
+    }
+);
+
+
+ClearCollect(
+    colChatOutput,
+    {
+        chatOutputRecordId: 1,
+        chatInputRecordId: 1,
+        MessageBody: "Sample Output Message One." & Char(10) & "Detailed description for record 1.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "Evaluator01@dummy.mail",
+        Details: "The initial response was accurate and timely.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 2,
+        chatInputRecordId: 2,
+        MessageBody: "Second response regarding feature requests." & Char(10) & "We suggest implementing X first.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "Evaluator02@dummy.mail",
+        Details: "Suggestion aligns with current roadmap objectives.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 3,
+        chatInputRecordId: 3,
+        MessageBody: "# Input sample 3 Response." & Char(10) & "The system detected the performance issue.",
+        OutputEvaluation: "Fair",
+        Evaluator_id: "DevTeamLead@dummy.mail",
+        Details: "Requires further investigation on mobile device compatibility.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 4,
+        chatInputRecordId: 4,
+        MessageBody: "Fourth entry response." & Char(10) & "All API endpoints are documented and ready for testing.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "API_Test@dummy.mail",
+        Details: "Documentation is clear; no major issues found.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 5,
+        chatInputRecordId: 5,
+        MessageBody: "# Input sample 5 Response." & Char(10) & "The bug has been reproduced in staging.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "QA_Tester@dummy.mail",
+        Details: "Critical fix deployed to the dev environment successfully.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 6,
+        chatInputRecordId: 6,
+        MessageBody: "Sixth message feedback response." & Char(10) & "We agree with the UI/UX suggestions.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "Designer@dummy.mail",
+        Details: "Implemented color palette changes as requested in detail 6.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 7,
+        chatInputRecordId: 7,
+        MessageBody: "# Input sample 7 Response." & Char(10) & "Q3 sales analysis completed.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "DataAnalyst@dummy.mail",
+        Details: "APAC region showed a 5% growth compared to Q2.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 8,
+        chatInputRecordId: 8,
+        MessageBody: "Eighth message response." & Char(10) & "The required authentication methods are OAuth2 and API Keys.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "Security@dummy.mail",
+        Details: "Ensure proper token refresh logic is implemented on the client side.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 9,
+        chatInputRecordId: 9,
+        MessageBody: "# Input sample 9 Response." & Char(10) & "Load testing results indicate stable performance under peak load.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "InfraEng@dummy.mail",
+        Details: "No memory leaks detected during stress tests up to 500 concurrent users.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 10,
+        chatInputRecordId: 10,
+        MessageBody: "Tenth entry response." & Char(10) & "Dark mode implementation is in the next sprint.",
+        OutputEvaluation: "Fair",
+        Evaluator_id: "ProductOwner@dummy.mail",
+        Details: "Prioritized based on user feedback from beta testing group.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 11,
+        chatInputRecordId: 11,
+        MessageBody: "# Input sample 11 Response." & Char(10) & "Security protocols confirm ISO 27001 compliance.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "Compliance@dummy.mail",
+        Details: "All data at rest and in transit are encrypted using AES-256.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    },
+    {
+        chatOutputRecordId: 12,
+        chatInputRecordId: 12,
+        MessageBody: "Final record response." & Char(10) & "Deployment scheduled for next Friday.",
+        OutputEvaluation: "Good",
+        Evaluator_id: "PM@dummy.mail",
+        Details: "All prerequisites met; final sign-off received from stakeholders.",
+        ModelVersion: "version 261008_A",
+        Active: true
+    }
+);
+
+
+ClearCollect(
+    colChatInputCategory,
+    { CategoryName: "General Inquiry" },
+    { CategoryName: "Feature Request" },
+    { CategoryName: "Performance Test" },
+    { CategoryName: "Technical Query" },
+    { CategoryName: "Bug Report" },
+    { CategoryName: "UI/UX Feedback" },
+    { CategoryName: "Sales Analysis" },
+    { CategoryName: "System Test" },
+    { CategoryName: "Suggestion" },
+    { CategoryName: "Security Audit" },
+    { CategoryName: "Project Management" }
+);
+
+ClearCollect(
+    colOutputEvaluation,
+    { EvaluationName: "Good" },
+    { EvaluationName: "Fair" },
+    { EvaluationName: "Poor" }
+);
+
+Set(varMainView,"MainView");
+Set(varMainViewDetail,"MainViewDetail");
+
