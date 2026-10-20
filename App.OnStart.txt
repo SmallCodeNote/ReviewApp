@@ -86,131 +86,103 @@ ClearCollect(
     }
 );
 
-
 ClearCollect(
     colChatOutput,
     {
         chatOutputRecordId: 1,
         chatInputRecordId: 1,
         MessageBody: "Sample Output Message One." & Char(10) & "Detailed description for record 1.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "Evaluator01@dummy.mail",
-        Details: "The initial response was accurate and timely.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 2,
         chatInputRecordId: 2,
         MessageBody: "Second response regarding feature requests." & Char(10) & "We suggest implementing X first.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "Evaluator02@dummy.mail",
-        Details: "Suggestion aligns with current roadmap objectives.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 3,
         chatInputRecordId: 3,
         MessageBody: "# Input sample 3 Response." & Char(10) & "The system detected the performance issue.",
-        OutputEvaluation: "Fair",
-        Evaluator_id: "DevTeamLead@dummy.mail",
-        Details: "Requires further investigation on mobile device compatibility.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 4,
         chatInputRecordId: 4,
         MessageBody: "Fourth entry response." & Char(10) & "All API endpoints are documented and ready for testing.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "API_Test@dummy.mail",
-        Details: "Documentation is clear; no major issues found.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 5,
         chatInputRecordId: 5,
         MessageBody: "# Input sample 5 Response." & Char(10) & "The bug has been reproduced in staging.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "QA_Tester@dummy.mail",
-        Details: "Critical fix deployed to the dev environment successfully.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 6,
         chatInputRecordId: 6,
         MessageBody: "Sixth message feedback response." & Char(10) & "We agree with the UI/UX suggestions.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "Designer@dummy.mail",
-        Details: "Implemented color palette changes as requested in detail 6.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 7,
         chatInputRecordId: 7,
         MessageBody: "# Input sample 7 Response." & Char(10) & "Q3 sales analysis completed.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "DataAnalyst@dummy.mail",
-        Details: "APAC region showed a 5% growth compared to Q2.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 8,
         chatInputRecordId: 8,
         MessageBody: "Eighth message response." & Char(10) & "The required authentication methods are OAuth2 and API Keys.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "Security@dummy.mail",
-        Details: "Ensure proper token refresh logic is implemented on the client side.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 9,
         chatInputRecordId: 9,
         MessageBody: "# Input sample 9 Response." & Char(10) & "Load testing results indicate stable performance under peak load.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "InfraEng@dummy.mail",
-        Details: "No memory leaks detected during stress tests up to 500 concurrent users.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_A",
         Active: true
     },
     {
         chatOutputRecordId: 10,
-        chatInputRecordId: 10,
+        chatInputRecordId: 1,
         MessageBody: "Tenth entry response." & Char(10) & "Dark mode implementation is in the next sprint.",
-        OutputEvaluation: "Fair",
-        Evaluator_id: "ProductOwner@dummy.mail",
-        Details: "Prioritized based on user feedback from beta testing group.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_B",
         Active: true
     },
     {
         chatOutputRecordId: 11,
-        chatInputRecordId: 11,
+        chatInputRecordId: 2,
         MessageBody: "# Input sample 11 Response." & Char(10) & "Security protocols confirm ISO 27001 compliance.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "Compliance@dummy.mail",
-        Details: "All data at rest and in transit are encrypted using AES-256.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_B",
         Active: true
     },
     {
         chatOutputRecordId: 12,
-        chatInputRecordId: 12,
+        chatInputRecordId: 3,
         MessageBody: "Final record response." & Char(10) & "Deployment scheduled for next Friday.",
-        OutputEvaluation: "Good",
-        Evaluator_id: "PM@dummy.mail",
-        Details: "All prerequisites met; final sign-off received from stakeholders.",
-        ModelVersion: "version 261008_A",
+        ModelVersion: "1008_B",
         Active: true
     }
 );
 
+Set(varModelVersion,"1008_A");
+
+ClearCollect(
+    colModelVersion,
+    {ModelVersion: "1008A"},
+    {ModelVersion: "1008B"},
+    {ModelVersion: "1008C"},
+    {ModelVersion: "1009A"}
+);
 
 ClearCollect(
     colChatInputCategory,
@@ -236,4 +208,34 @@ ClearCollect(
 
 Set(varMainView,"MainView");
 Set(varMainViewDetail,"MainViewDetail");
+Set(varEvaluator_id,"Evaluator01@dummy.mail");
+
+ClearCollect(
+    colChatOutputEvaluate,
+    { chatEvaluateId: 1, chatOutputRecordId: 1, OutputEvaluation: "Good", Evaluator_id: "Evaluator01@dummy.mail", Details: "Response was highly accurate.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 2, chatOutputRecordId: 2, OutputEvaluation: "Good", Evaluator_id: "Evaluator02@dummy.mail", Details: "Suggestion is well-received by the team.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 3, chatOutputRecordId: 3, OutputEvaluation: "Fair", Evaluator_id: "DevTeamLead@dummy.mail", Details: "Needs further refinement on edge cases.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 4, chatOutputRecordId: 4, OutputEvaluation: "Good", Evaluator_id: "API_Test@dummy.mail", Details: "Documentation is comprehensive and easy to follow.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 5, chatOutputRecordId: 5, OutputEvaluation: "Good", Evaluator_id: "QA_Tester@dummy.mail", Details: "Bug fix confirmed working in the latest build.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 6, chatOutputRecordId: 6, OutputEvaluation: "Good", Evaluator_id: "Designer@dummy.mail", Details: "UI changes successfully improved user flow.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 7, chatOutputRecordId: 7, OutputEvaluation: "Good", Evaluator_id: "DataAnalyst@dummy.mail", Details: "Sales figures show positive trend.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 8, chatOutputRecordId: 8, OutputEvaluation: "Good", Evaluator_id: "Security@dummy.mail", Details: "Authentication methods are robust and secure.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 9, chatOutputRecordId: 9, OutputEvaluation: "Good", Evaluator_id: "InfraEng@dummy.mail", Details: "Load tests showed stable performance under stress.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 10, chatOutputRecordId: 10, OutputEvaluation: "Fair", Evaluator_id: "ProductOwner@dummy.mail", Details: "Feature prioritization needs re-evaluation.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 11, chatOutputRecordId: 11, OutputEvaluation: "Good", Evaluator_id: "Compliance@dummy.mail", Details: "Meets all regulatory standards.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 12, chatOutputRecordId: 12, OutputEvaluation: "Good", Evaluator_id: "PM@dummy.mail", Details: "Project milestones achieved on schedule.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 13, chatOutputRecordId: 1, OutputEvaluation: "Good", Evaluator_id: "Evaluator03@dummy.mail", Details: "Second review confirms high quality.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 14, chatOutputRecordId: 2, OutputEvaluation: "Fair", Evaluator_id: "Evaluator01@dummy.mail", Details: "Minor clarification needed on scope.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 15, chatOutputRecordId: 3, OutputEvaluation: "Good", Evaluator_id: "DevTeamLead@dummy.mail", Details: "Performance improvements are noticeable.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 16, chatOutputRecordId: 4, OutputEvaluation: "Good", Evaluator_id: "API_Test@dummy.mail", Details: "Testing complete; integration is seamless.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 17, chatOutputRecordId: 5, OutputEvaluation: "Good", Evaluator_id: "QA_Tester@dummy.mail", Details: "Regression tests passed successfully.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 18, chatOutputRecordId: 6, OutputEvaluation: "Good", Evaluator_id: "Designer@dummy.mail", Details: "Visual appeal greatly enhanced by changes.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 19, chatOutputRecordId: 7, OutputEvaluation: "Good", Evaluator_id: "DataAnalyst@dummy.mail", Details: "Forecast aligns with current market data.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 20, chatOutputRecordId: 8, OutputEvaluation: "Good", Evaluator_id: "Security@dummy.mail", Details: "Encryption standards are up to date.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 21, chatOutputRecordId: 9, OutputEvaluation: "Good", Evaluator_id: "InfraEng@dummy.mail", Details: "Scalability tests passed with high margins.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 22, chatOutputRecordId: 10, OutputEvaluation: "Fair", Evaluator_id: "ProductOwner@dummy.mail", Details: "Needs more user-centric design focus.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 23, chatOutputRecordId: 11, OutputEvaluation: "Good", Evaluator_id: "Compliance@dummy.mail", Details: "Audit passed without any major findings.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false },
+    { chatEvaluateId: 24, chatOutputRecordId: 12, OutputEvaluation: "Good", Evaluator_id: "PM@dummy.mail", Details: "Final sign-off confirmed for production release.", ModelVersion: "version 261008_A", Active: true, IsUpdated: false }
+);
+
 
