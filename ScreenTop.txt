@@ -40,6 +40,48 @@ Screens:
                   RadiusTopRight: =8
                   Width: =360
                 Children:
+                  - Container_Left_Header:
+                      Control: GroupContainer@1.5.0
+                      Variant: AutoLayout
+                      Properties:
+                        FillPortions: =0
+                        Height: =40
+                        LayoutAlignItems: =LayoutAlignItems.Center
+                        LayoutDirection: =LayoutDirection.Horizontal
+                        LayoutGap: =8
+                        LayoutMinHeight: =16
+                        LayoutMinWidth: =16
+                        PaddingBottom: =4
+                        PaddingLeft: =4
+                        PaddingRight: =4
+                        PaddingTop: =4
+                      Children:
+                        - Button_Reload:
+                            Control: Classic/Button@2.2.0
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 0)
+                              BorderStyle: =BorderStyle.None
+                              Color: =RGBA(255, 255, 255, 1)
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              DisabledFill: =RGBA(242, 242, 241, 0)
+                              Fill: =RGBA(0, 120, 212, 1)
+                              Font: =Font.'Segoe UI'
+                              Height: =32
+                              HoverBorderColor: =RGBA(0, 0, 0, 0)
+                              HoverColor: =RGBA(255, 255, 255, 1)
+                              HoverFill: =RGBA(16, 110, 190, 1)
+                              LayoutMinHeight: =16
+                              LayoutMinWidth: =16
+                              PressedBorderColor: =RGBA(0, 69, 120, 1)
+                              PressedColor: =RGBA(255, 255, 255, 1)
+                              PressedFill: =RGBA(16, 110, 190, 1)
+                              RadiusBottomLeft: =5
+                              RadiusBottomRight: =5
+                              RadiusTopLeft: =5
+                              RadiusTopRight: =5
+                              Text: ="Reload"
+                              Width: =80
                   - Container_GalleryChatInput_Filter:
                       Control: GroupContainer@1.5.0
                       Variant: AutoLayout
@@ -188,6 +230,36 @@ Screens:
                   X: =40
                   Y: =40
                 Children:
+                  - Gallery_ChatOutput:
+                      Control: Gallery@2.15.0
+                      Variant: BrowseLayout_Horizontal_TwoTextOneImageVariant_ver5.0
+                      Properties:
+                        AlignInContainer: =AlignInContainer.SetByContainer
+                        BorderColor: =RGBA(245, 245, 245, 1)
+                        FillPortions: =0
+                        Height: =40
+                        Items: =SortByColumns( Filter(colChatOutput,chatInputRecordId=Gallery_ChatInput.Selected.chatInputRecordId),"ModelVersion",SortOrder.Descending)
+                        TemplateSize: =120
+                        Width: =Parent.Width
+                      Children:
+                        - Label_ChatOutput_ModelVersion:
+                            Control: Label@2.5.1
+                            Properties:
+                              BorderColor: =RGBA(0, 0, 0, 1)
+                              Color: =RGBA(50, 49, 48, 1)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              Font: =Font.'Segoe UI'
+                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
+                              Height: =24
+                              OnSelect: =Select(Parent)
+                              PaddingBottom: =0
+                              PaddingLeft: =12
+                              PaddingRight: =0
+                              PaddingTop: =0
+                              Size: =14
+                              Text: =ThisItem.ModelVersion
+                              VerticalAlign: =VerticalAlign.Top
+                              Width: =120
                   - Label_ChatOutput_MessageBodyView:
                       Control: Label@2.5.1
                       Properties:
@@ -204,7 +276,7 @@ Screens:
                         LayoutMinHeight: =16
                         LayoutMinWidth: =16
                         Overflow: =Overflow.Scroll
-                        Text: =varMainView
+                        Text: =First(SortByColumns(Filter(colChatOutput,chatOutputRecordId = Gallery_ChatOutput.Selected.chatOutputRecordId),"ModelVersion",SortOrder.Descending)).MessageBody
                         VerticalAlign: =VerticalAlign.Top
                         Width: =Parent.Width
             - Container_Right:
@@ -230,7 +302,7 @@ Screens:
                   X: =40
                   Y: =40
                 Children:
-                  - Container_ChatOutput_EvaluationInput:
+                  - Container_ChatOutput_EvaluationAdd:
                       Control: GroupContainer@1.5.0
                       Variant: AutoLayout
                       Properties:
@@ -244,7 +316,7 @@ Screens:
                         X: =40
                         Y: =40
                       Children:
-                        - Container_ChatOutput_EvaluationInput_Header:
+                        - Container_ChatOutput_EvaluationAdd_Header:
                             Control: GroupContainer@1.5.0
                             Variant: AutoLayout
                             Properties:
@@ -252,6 +324,7 @@ Screens:
                               Height: =60
                               LayoutAlignItems: =LayoutAlignItems.Center
                               LayoutDirection: =LayoutDirection.Horizontal
+                              LayoutGap: =8
                               LayoutMinHeight: =16
                               LayoutMinWidth: =16
                               PaddingBottom: =8
@@ -259,7 +332,7 @@ Screens:
                               PaddingRight: =8
                               PaddingTop: =8
                             Children:
-                              - ComboBox_OutputEvaluation:
+                              - ComboBox_ChatOutput_EvaluationAdd_Evaluation:
                                   Control: Classic/ComboBox@2.4.0
                                   Properties:
                                     BorderColor: =RGBA(245, 245, 245, 1)
@@ -280,6 +353,7 @@ Screens:
                                     HoverColor: =RGBA(50, 49, 48, 1)
                                     HoverFill: =RGBA(245, 245, 245, 1)
                                     InputTextPlaceholder: ="OutputEvaluation"
+                                    IsSearchable: =false
                                     Items: =colOutputEvaluation
                                     LayoutMinHeight: =16
                                     LayoutMinWidth: =16
@@ -287,10 +361,11 @@ Screens:
                                     PressedColor: =RGBA(255, 255, 255, 1)
                                     PressedFill: =RGBA(0, 120, 212, 1)
                                     SearchFields: =["EvaluationName"]
+                                    SelectMultiple: =false
                                     SelectionColor: =RGBA(255, 255, 255, 1)
                                     SelectionFill: =RGBA(0, 120, 212, 1)
                                     Width: =220
-                              - Button_SaveOutputRecord:
+                              - Button_ChatOutput_EvaluationAdd_Add:
                                   Control: Classic/Button@2.2.0
                                   Properties:
                                     BorderColor: =RGBA(0, 0, 0, 0)
@@ -306,6 +381,23 @@ Screens:
                                     HoverFill: =RGBA(16, 110, 190, 1)
                                     LayoutMinHeight: =16
                                     LayoutMinWidth: =16
+                                    OnSelect: |-
+                                      =Collect(
+                                          colChatOutputEvaluate,
+                                          {
+                                              chatEvaluateId: Max(colChatOutputEvaluate, chatEvaluateId) + 1,
+                                              chatOutputRecordId: Gallery_ChatOutput.Selected.chatOutputRecordId,
+                                              OutputEvaluation: ComboBox_ChatOutput_EvaluationAdd_Evaluation.Selected.EvaluationName,
+                                              Evaluator_id: varEvaluator_id,
+                                              Details: TextInput__ChatOutput_EvaluationInput_Detail.Text,
+                                              ModelVersion: Gallery_ChatOutput.Selected.ModelVersion,
+                                              Active: true,
+                                              IsUpdated: false
+                                          }
+                                      );
+
+                                      Reset(ComboBox_ChatOutput_EvaluationAdd_Evaluation);
+                                      Reset(TextInput__ChatOutput_EvaluationInput_Detail)
                                     PressedBorderColor: =RGBA(0, 69, 120, 1)
                                     PressedColor: =RGBA(255, 255, 255, 1)
                                     PressedFill: =RGBA(16, 110, 190, 1)
@@ -313,14 +405,14 @@ Screens:
                                     RadiusBottomRight: =5
                                     RadiusTopLeft: =5
                                     RadiusTopRight: =5
-                                    Text: ="Save"
+                                    Text: ="Add"
                                     Width: =80
                         - TextInput__ChatOutput_EvaluationInput_Detail:
                             Control: Classic/TextInput@2.3.2
                             Properties:
                               BorderColor: =RGBA(245, 245, 245, 1)
                               Color: =RGBA(50, 49, 48, 1)
-                              Default: ="Details"
+                              Default: =
                               DisabledBorderColor: =RGBA(0, 0, 0, 0)
                               DisabledColor: =RGBA(161, 159, 157, 1)
                               DisabledFill: =RGBA(242, 242, 241, 0)
@@ -341,102 +433,46 @@ Screens:
                               RadiusTopRight: =0
                               Width: |+
                                 =Parent.Width-16
-                  - Container_Gallery_ChatOutput_Filter:
-                      Control: GroupContainer@1.5.0
-                      Variant: AutoLayout
-                      Properties:
-                        FillPortions: =0
-                        Height: =60
-                        LayoutAlignItems: =LayoutAlignItems.Center
-                        LayoutDirection: =LayoutDirection.Vertical
-                        PaddingBottom: =8
-                        PaddingLeft: =8
-                        PaddingRight: =8
-                        PaddingTop: =8
-                        X: =40
-                        Y: =40
-                      Children:
-                        - ComboBox_OutputEvaluation_Filter:
-                            Control: Classic/ComboBox@2.4.0
-                            Properties:
-                              BorderColor: =RGBA(245, 245, 245, 1)
-                              ChevronBackground: =RGBA(245, 245, 245, 1)
-                              ChevronDisabledBackground: =RGBA(242, 242, 241, 0)
-                              ChevronDisabledFill: =RGBA(161, 159, 157, 1)
-                              ChevronFill: =RGBA(50, 49, 48, 1)
-                              ChevronHoverBackground: =RGBA(245, 245, 245, 1)
-                              ChevronHoverFill: =RGBA(50, 49, 48, 1)
-                              Color: =RGBA(50, 49, 48, 1)
-                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
-                              DisabledColor: =RGBA(161, 159, 157, 1)
-                              DisabledFill: =RGBA(242, 242, 241, 0)
-                              DisplayFields: =["CategoryName"]
-                              Fill: =RGBA(245, 245, 245, 1)
-                              Font: =Font.'Segoe UI'
-                              HoverBorderColor: =RGBA(16, 110, 190, 1)
-                              HoverColor: =RGBA(50, 49, 48, 1)
-                              HoverFill: =RGBA(245, 245, 245, 1)
-                              InputTextPlaceholder: ="Item filter by OutputEvaluation"
-                              Items: =colChatInputCategory
-                              LayoutMinHeight: =16
-                              LayoutMinWidth: =16
-                              PressedBorderColor: =RGBA(16, 110, 190, 1)
-                              PressedColor: =RGBA(255, 255, 255, 1)
-                              PressedFill: =RGBA(0, 120, 212, 1)
-                              SearchFields: =["CategoryName"]
-                              SelectionColor: =RGBA(255, 255, 255, 1)
-                              SelectionFill: =RGBA(0, 120, 212, 1)
-                  - Gallery_ChatOutput:
+                  - Gallery_ChatOutputEvaluate:
                       Control: Gallery@2.15.0
                       Variant: BrowseLayout_Vertical_ThreeTextVariant_ver5.0
                       Properties:
                         BorderColor: =RGBA(245, 245, 245, 1)
-                        Items: =colChatOutput
+                        Items: |-
+                          =SortByColumns(
+                              Filter(
+                                  colChatOutputEvaluate,
+                                  chatOutputRecordId =
+                                      Gallery_ChatOutput.Selected.chatOutputRecordId
+                              ),
+                              "ModelVersion",
+                              SortOrder.Descending
+                          )
+                        TemplateSize: =150
                       Children:
-                        - Label_ChatOutput_Details:
+                        - Label_ChatOutputEvaluate_OutputEvaluation:
                             Control: Label@2.5.1
                             Properties:
-                              BorderColor: =RGBA(0, 0, 0, 1)
-                              Color: =RGBA(96, 94, 92, 1)
-                              DisabledColor: =RGBA(161, 159, 157, 1)
-                              Font: =Font.'Segoe UI'
-                              FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-                              Height: =65
-                              OnSelect: =Select(Parent)
-                              Overflow: =Overflow.Scroll
-                              PaddingBottom: =0
-                              PaddingLeft: =12
-                              PaddingRight: =0
-                              PaddingTop: =0
-                              Size: =12
-                              Text: =ThisItem.Details
-                              VerticalAlign: =VerticalAlign.Top
-                              Width: =269
-                              X: =61
-                              Y: =43
-                        - Label_ChatOutput_ModelVersion:
-                            Control: Label@2.5.1
-                            Properties:
-                              Align: =Align.Right
                               BorderColor: =RGBA(0, 0, 0, 1)
                               Color: =RGBA(50, 49, 48, 1)
                               DisabledColor: =RGBA(161, 159, 157, 1)
                               Font: =Font.'Segoe UI'
                               FontWeight: =If(ThisItem.IsSelected, FontWeight.Semibold, FontWeight.Normal)
-                              Height: =25
+                              Height: =21
                               OnSelect: =Select(Parent)
                               PaddingBottom: =0
                               PaddingLeft: =12
                               PaddingRight: =0
                               PaddingTop: =0
                               Size: =14
-                              Text: =ThisItem.ModelVersion
+                              Text: =ThisItem.OutputEvaluation
                               VerticalAlign: =VerticalAlign.Top
-                              Width: =222
-                              X: =98
-                        - Label_ChatOutput_OutputEvaluation:
+                              Width: =198
+                              X: =4
+                        - Label_ChatOutputEvaluate_ModelVersion:
                             Control: Label@2.5.1
                             Properties:
+                              Align: =Align.Right
                               BorderColor: =RGBA(0, 0, 0, 1)
                               Color: =RGBA(96, 94, 92, 1)
                               DisabledColor: =RGBA(161, 159, 157, 1)
@@ -449,11 +485,11 @@ Screens:
                               PaddingRight: =0
                               PaddingTop: =0
                               Size: =12
-                              Text: =ThisItem.OutputEvaluation
+                              Text: =ThisItem.ModelVersion
                               VerticalAlign: =VerticalAlign.Top
                               Width: =90
-                              X: =54
-                        - Label_ChatOutput_Evaluator_id:
+                              X: =230
+                        - Label_ChatOutputEvaluate_Evaluator_id:
                             Control: Label@2.5.1
                             Properties:
                               BorderColor: =RGBA(0, 0, 0, 1)
@@ -470,51 +506,94 @@ Screens:
                               Size: =12
                               Text: =ThisItem.Evaluator_id
                               VerticalAlign: =VerticalAlign.Top
-                              Width: =266
-                              X: =54
-                              Y: =Label_ChatOutput_OutputEvaluation.Y + Label_ChatOutput_OutputEvaluation.Height
-                        - SetMainView:
+                              Width: =290
+                              X: =4
+                              Y: =118
+                        - TextInput_ChatOutputEvaluate_Details:
+                            Control: Classic/TextInput@2.3.2
+                            Properties:
+                              BorderColor: =RGBA(245, 245, 245, 1)
+                              Clear: =true
+                              Color: =RGBA(50, 49, 48, 1)
+                              Default: =ThisItem.Details
+                              DisabledBorderColor: =RGBA(0, 0, 0, 0)
+                              DisabledColor: =RGBA(161, 159, 157, 1)
+                              DisabledFill: =RGBA(242, 242, 241, 0)
+                              Font: =Font.'Segoe UI'
+                              Height: =97
+                              HoverBorderColor: =RGBA(16, 110, 190, 1)
+                              HoverColor: =RGBA(50, 49, 48, 1)
+                              HoverFill: =RGBA(255, 255, 255, 1)
+                              Mode: =TextMode.MultiLine
+                              OnChange: |-
+                                =UpdateIf(
+                                    colChatOutputEvaluate,
+                                    chatEvaluateId = ThisItem.chatEvaluateId,
+                                    {
+                                        IsUpdated: true
+                                    }
+                                )
+                              OnSelect: =Select(Parent)
+                              PressedBorderColor: =RGBA(0, 120, 212, 1)
+                              PressedColor: =RGBA(50, 49, 48, 1)
+                              PressedFill: =RGBA(255, 255, 255, 1)
+                              RadiusBottomLeft: =0
+                              RadiusBottomRight: =0
+                              RadiusTopLeft: =0
+                              RadiusTopRight: =0
+                              Size: =11
+                              X: =4
+                              Y: =21
+                        - Icon_ChatOutputEvaluate_Save:
                             Control: Classic/Icon@2.5.0
                             Properties:
                               AccessibleLabel: =Self.Tooltip
                               BorderColor: =RGBA(0, 0, 0, 0)
-                              Color: =RGBA(166, 166, 166, 1)
+                              Color: =If(ThisItem.IsUpdated, RGBA(0, 69, 120, 1),RGBA(200,200,200,1))
                               DisabledBorderColor: =RGBA(245, 245, 245, 1)
                               DisabledColor: =RGBA(225, 223, 221, 1)
                               DisabledFill: =RGBA(0, 0, 0, 0)
                               FocusedBorderThickness: =4
-                              Height: =50
+                              Height: =29
                               HoverBorderColor: =RGBA(0, 0, 0, 0)
                               HoverColor: =RGBA(16, 110, 190, 1)
                               HoverFill: =RGBA(0, 0, 0, 0)
-                              Icon: =Icon.ChevronLeft
-                              OnSelect: =Select(Parent)
-                              PaddingBottom: =16
-                              PaddingLeft: =16
-                              PaddingRight: =16
-                              PaddingTop: =16
+                              Icon: =Icon.Publish
+                              OnSelect: |-
+                                =UpdateIf(
+                                    colChatOutputEvaluate,
+                                    chatEvaluateId = ThisItem.chatEvaluateId,
+                                    {
+                                        Details: TextInput_ChatOutputEvaluate_Details.Text,
+                                        IsUpdated: false
+                                    }
+                                )
+                              PaddingBottom: =4
+                              PaddingLeft: =4
+                              PaddingRight: =4
+                              PaddingTop: =4
                               PressedBorderColor: =RGBA(0, 0, 0, 0)
                               PressedColor: =RGBA(16, 110, 190, 1)
                               PressedFill: =RGBA(0, 0, 0, 0)
-                              Tooltip: ="項目の詳細の表示"
+                              Tooltip: ="update this item"
                               Width: =50
-                              X: =4
-                              Y: =29
-                        - Separator_Gallery_ChatOutput:
+                              X: =283
+                              Y: =110
+                        - Separator_ChatOutputEvaluate:
                             Control: Rectangle@2.3.0
                             Properties:
-                              BorderColor: =RGBA(0, 0, 0, 0)
-                              Fill: =RGBA(255, 255, 255, 1)
-                              Height: =8
+                              BorderColor: =RGBA(204, 228, 246, 1)
+                              Fill: =RGBA(230, 230, 230, 1)
+                              Height: =4
                               OnSelect: =Select(Parent)
                               Width: =Parent.TemplateWidth
                               Y: =Parent.TemplateHeight - Self.Height
-                        - Rectangle_Gallery_ChatOutput:
+                        - Rectangle_ChatOutputEvaluate:
                             Control: Rectangle@2.3.0
                             Properties:
                               BorderColor: =RGBA(0, 0, 0, 0)
                               Fill: =RGBA(0, 120, 212, 1)
-                              Height: =Parent.TemplateHeight - Separator_Gallery_ChatOutput.Height
+                              Height: =Parent.TemplateHeight - Separator_ChatOutputEvaluate.Height
                               OnSelect: =Select(Parent)
                               Visible: =ThisItem.IsSelected
                               Width: =4
